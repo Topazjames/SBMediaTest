@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
 // include in the required classes
 include_once (__DIR__ . "/classes/CurlCaller.php");
 include_once (__DIR__ . "/classes/DataHandler.php");

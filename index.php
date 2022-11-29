@@ -31,7 +31,7 @@ foreach ($users_data->getData("Users") as $user) {
         $user->company['name'],
         $user->email,
         $user->phone,
-        isset($user->extension) ?? '',
+        $user->extension ?? '',
         $user->address['city']
     ];
 }

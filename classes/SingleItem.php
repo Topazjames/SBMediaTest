@@ -18,6 +18,9 @@ class SingleItem {
 
             // validate the email
             $this->validateEmail($key, $item);
+
+            // separate out forename and surname
+            $this->separateNames($key, $item);
         }
     }
 
@@ -40,6 +43,9 @@ class SingleItem {
 
             // split up any extensions
             $phone_items = explode(" ", $value);
+
+            // set the phone with the digitalised version
+            $this->phone = (int)$phone_items[0];
             unset($phone_items[0]);
 
             // if an extension exists, add the property
@@ -60,6 +66,15 @@ class SingleItem {
     public function validateEmail($key, $value):void {
         if ($key == "email") {
             $this->email_valid = (bool)filter_var($value, FILTER_VALIDATE_EMAIL);
+        }
+    }
+
+
+    public function separateNames($key, $value):void {
+        if ($key == "name") {
+            $names = explode(" ", $value);
+            $this->forename = $names[0];
+            $this->surname = $names[1];
         }
     }
 

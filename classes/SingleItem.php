@@ -29,7 +29,7 @@ class SingleItem {
      * @param $value
      * @return void
      */
-    public function validatePhone ($key, $value) {
+    public function validatePhone ($key, $value):void {
         // convert any phone numbers into digits
         if ($key == "phone" && !is_numeric($value)) {
             // check for any non-numeric characters found in phone numbers
@@ -46,6 +46,20 @@ class SingleItem {
             if (!empty($phone_items)) {
                 $this->extension = $phone_items[1];
             }
+        }
+    }
+
+
+    /**
+     * Validate whether an email address is valid
+     *
+     * @param $key
+     * @param $value
+     * @return void
+     */
+    public function validateEmail($key, $value):void {
+        if ($key == "email") {
+            $this->email_valid = (bool)filter_var($value, FILTER_VALIDATE_EMAIL);
         }
     }
 

@@ -43,6 +43,9 @@ class SingleItem {
 
             // split up any extensions
             $phone_items = explode(" ", $value);
+
+            // set the phone with the digitalised version
+            $this->phone = (int)$phone_items[0];
             unset($phone_items[0]);
 
             // if an extension exists, add the property

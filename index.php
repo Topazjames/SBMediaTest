@@ -25,14 +25,32 @@ $data[] = ['first name', 'last name', 'company name', 'email', 'phone', 'extensi
 
 // arrange the data from the users
 foreach ($users_data->getData("Users") as $user) {
-    var_dump($user);
     $data[] = [
         $user->forename,
         $user->surname,
         $user->company['name'],
         $user->email,
         $user->phone,
-        $user->extension,
+        isset($user->extension) ?? '',
         $user->address['city']
     ];
 }
+
+// write CSV file
+$file = __DIR__ . '/CSV/users-' . date('d-m-y-H-i-s') . '.csv';
+
+// open (or create) the file
+$open_file = fopen($file, 'w');
+
+// check that we have opened the file, if this fails it could be down to permissions
+if ($open_file === false) {
+    die("File '{$file}' is not writable");
+}
+
+foreach ($data as $item) {
+    // insert the row into the CSV
+    fputcsv($open_file, $item);
+}
+
+// close the file
+fclose($open_file);

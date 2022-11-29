@@ -14,6 +14,11 @@ class CurlCaller {
         $this->endpoint = $endpoint;
     }
 
+
+    /**
+     * @return mixed
+     * @throws Exception
+     */
     public function run() {
         if (empty($this->endpoint)) {
             throw new \Exception("No endpoint has been provided");

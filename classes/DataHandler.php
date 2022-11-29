@@ -19,7 +19,22 @@ class DataHandler {
      *
      * @return mixed
      */
-    public function getData() {
+    public function getAllData():mixed {
         return $this->data;
+    }
+
+
+    /**
+     * Split all the data into their own class/object - the object name and key can be set via parameters
+     *
+     * @param string $object_name
+     * @param string $key
+     * @return void
+     */
+    public function splitData(string $object_name, string $key = ""):void {
+        // for each item, create an object
+        foreach ($this->data as $item) {
+            $this->{$object_name}[$item[$key]] = new SingleItem($item);
+        }
     }
 }

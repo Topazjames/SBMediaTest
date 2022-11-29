@@ -37,7 +37,8 @@ foreach ($users_data->getData("Users") as $user) {
 }
 
 // write CSV file
-$file = __DIR__ . '/CSV/users-' . date('d-m-y-H-i-s') . '.csv';
+$filename = 'users-' . date('d-m-y-H-i-s') . '.csv';
+$file = __DIR__ . '/CSV/' . $filename;
 
 // open (or create) the file
 $open_file = fopen($file, 'w');
@@ -54,3 +55,12 @@ foreach ($data as $item) {
 
 // close the file
 fclose($open_file);
+
+
+// check if we are using the script via CLI or a browser
+if (php_sapi_name() !== "cli") {
+    // we're on a browser, download the file
+    header("Content-type: text/csv");
+    header("Content-Disposition: attachment; filename={$filename}");
+    readfile($file);
+}

@@ -25,6 +25,17 @@ class DataHandler {
 
 
     /**
+     * Getter for the split data set
+     *
+     * @param string $object
+     * @return mixed
+     */
+    public function getData(string $object) {
+        return $this->$object;
+    }
+
+
+    /**
      * Split all the data into their own class/object - the object name and key can be set via parameters
      *
      * @param string $object_name
